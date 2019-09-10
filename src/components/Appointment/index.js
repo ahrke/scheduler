@@ -23,8 +23,8 @@ export default function Appointment(props) {
 
   const {mode, transition, back} = useVisualMode(props.interview ? SHOW : EMPTY);
   const [state, setState] = useState({
-    student: "",
-    interviewer: null
+    student: props.interview && props.interview.student || "",
+    interviewer: props.interview && props.interview.interviewer || null
   });
 
   useEffect(() => {
@@ -49,7 +49,9 @@ export default function Appointment(props) {
     if (mode === SAVING) {
       const interview = state
       props.bookInterview(props.id, interview)
-        .then(res => transition(SHOW))
+        .then(res => {
+          transition(SHOW)
+        })
         .catch(err => {
           console.log("error while saving appointment. err:", err);
           transition(ERROR_SAVE, true)
@@ -68,7 +70,7 @@ export default function Appointment(props) {
   }, [mode])
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={e => transition(CREATE)} />}
       {mode === SHOW && props.interview && (

@@ -68,22 +68,30 @@ export default function useApplicationData() {
 
 
   useEffect(() => {
+    let source = axios.CancelToken.source();
     
     Promise.all([
-      axios.get('http://localhost:3000/api/days', {
+      axios.get('/api/days', {
         headers: {'X-Requested-With': 'application/json'},
+        cancelToken: source.token
       }),
-      axios.get('http://localhost:3000/api/appointments', {
-        headers: {'X-Requested-With': 'application/json'}
+      axios.get('/api/appointments', {
+        headers: {'X-Requested-With': 'application/json'},
+        cancelToken: source.token
       }),
-      axios.get('http://localhost:3000/api/interviewers', {
-        headers: {'X-Requested-With': 'application/json'}
+      axios.get('/api/interviewers', {
+        headers: {'X-Requested-With': 'application/json'},
+        cancelToken: source.token
       })
     ]).then((all) => {
       const [days, appointments, interviewers] = all;
 
       dispatch({ type: SET_APPLICATION_DATA, value: {days: days.data, appointments: appointments.data, interviewers: interviewers.data} })
     })
+
+    return () => {
+      source.cancel("cleanup axios")
+    }
   }, []);
 
 
@@ -98,7 +106,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.put('http://localhost:3000/api/appointments/' + id, {
+    return axios.put('/api/appointments/' + id, {
       ...appointment
     })
       .then(res => {
@@ -117,7 +125,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.delete('http://localhost:3000/api/appointments/' + id, {...appointment})
+    return axios.delete('/api/appointments/' + id, {...appointment})
       .then(res => {
         dispatch({ type: SET_INTERVIEW, value: {appointments} });
       })

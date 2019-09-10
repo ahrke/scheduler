@@ -1,9 +1,11 @@
 import React from 'react';
 import InterviewerListItem from 'components/InterviewerListItem';
+import pt from 'prop-types';
 
 import 'components/InterviewerList.scss';
 
 export default function InterviewerList(props) {
+
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
@@ -20,4 +22,9 @@ export default function InterviewerList(props) {
       </ul>
     </section>
   )
+}
+
+InterviewerList.propTypes = {
+  value: pt.number,
+  onChange: pt.func
 }
