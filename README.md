@@ -1,8 +1,13 @@
 # Interview Scheduler
 
+A React app to schedule interviews. 
+
+Users are able to schedule, edit, or cancel an interview for the current week.
+
 ## Setup
 
 Install dependencies with `npm install`.
+Requires schedule-api in order to pull interview data from
 
 ## Running Webpack Development Server
 
@@ -10,14 +15,7 @@ Install dependencies with `npm install`.
 npm start
 ```
 
-## Running Jest Test Framework
-
-```sh
-npm test
-```
-
-## Running Storybook Visual Testbed
-
-```sh
-npm run storybook
-```
+## Samples of Application
+!["Main View"](/img/main.jpg)
+!["Adding/Editing View"](/img/adding.jpg)
+!["Error View"](/img/error.jpg)
