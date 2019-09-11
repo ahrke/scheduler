@@ -21,10 +21,10 @@ export default function InterviewerList(props) {
         )}
       </ul>
     </section>
-  )
-}
+  );
+};
 
 InterviewerList.propTypes = {
   value: pt.number,
   onChange: pt.func
-}
+};

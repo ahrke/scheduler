@@ -2,7 +2,6 @@ import React from "react";
 import className from "classnames";
 
 import "components/Button.scss";
-import { action } from "@storybook/addon-actions/dist/preview";
 
 export default function Button(props) {
    let buttonClass = className("button", {
@@ -17,4 +16,4 @@ export default function Button(props) {
    >
       {props.children}
    </button>;
-}
+};

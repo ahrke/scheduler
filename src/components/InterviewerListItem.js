@@ -6,7 +6,7 @@ import 'components/InterviewerListItem.scss';
 export default function InterviewerListItem(props) {
   let interviewerListItemClass = className("interviewers__item", {
     "interviewers__item--selected": props.selected  
-  })
+  });
 
   return (
     <li selected={props.selected} onClick={props.onChange} className={interviewerListItemClass}>
@@ -17,5 +17,5 @@ export default function InterviewerListItem(props) {
       />
       {props.selected && props.name}
     </li>
-  )
+  );
 };

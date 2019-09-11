@@ -33,7 +33,7 @@ export default function Appointment(props) {
     } else if (mode === SHOW && props.interview && props.interview.student === undefined) {
       transition(EMPTY);
     }
-  }, [props.interview, mode, transition])
+  }, [props.interview, mode, transition]);
 
   
   function save(name, interviewer) {
@@ -43,7 +43,7 @@ export default function Appointment(props) {
     })
     
     transition(SAVING)
-  }
+  };
   
   useEffect(() => {
     if (mode === SAVING) {
@@ -67,7 +67,7 @@ export default function Appointment(props) {
     } else if (mode === EDIT) {
 
     }
-  }, [mode])
+  }, [mode]);
 
   return (
     <article className="appointment" data-testid="appointment">
@@ -110,5 +110,5 @@ export default function Appointment(props) {
       {mode === ERROR_DELETE && <Error message="Problem while deleting...come back later" onCloseError={e => transition(SHOW)} />}
       {mode === ERROR_SAVE && <Error message="Problem while saving...come back later" onCloseError={e => transition(EMPTY)} />}
     </article>
-  )
-}
+  );
+};

@@ -46,7 +46,7 @@ export default function useApplicationData() {
     days: [],
     appointments: [],
     interviewers: []
-  })
+  });
 
   const setDay = day => dispatch({type: SET_DAY, value: day});
 
@@ -64,7 +64,7 @@ export default function useApplicationData() {
         dispatch({ type: SET_INTERVIEW, id: data.id, interview: data.interview });
       }
     }
-  })
+  });
 
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function useApplicationData() {
       const [days, appointments, interviewers] = all;
 
       dispatch({ type: SET_APPLICATION_DATA, value: {days: days.data, appointments: appointments.data, interviewers: interviewers.data} })
-    })
+    });
 
     return () => {
       source.cancel("cleanup axios")
@@ -111,14 +111,14 @@ export default function useApplicationData() {
     })
       .then(res => {
         dispatch({ type: SET_INTERVIEW, value: {appointments} });
-      })
-  }
+      });
+  };
 
   const cancelInterview = (id) => {
     const appointment = {
       ...state.appointments[id],
       interview: null
-    } 
+    };
 
     const appointments = {
       ...state.appointments,
@@ -128,13 +128,13 @@ export default function useApplicationData() {
     return axios.delete('/api/appointments/' + id, {...appointment})
       .then(res => {
         dispatch({ type: SET_INTERVIEW, value: {appointments} });
-      })
-  }
+      });
+  };
 
   return {
     state,
     setDay,
     bookInterview,
     cancelInterview
-  }
-}
+  };
+};
